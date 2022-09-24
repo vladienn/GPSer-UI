@@ -9,11 +9,16 @@ const headers: Readonly<Record<string, string | boolean>> = {
   "Access-Control-Allow-Header": true,
 };
 
-export const register = (username: string, email: string, password: string) => {
+export const register = (username: string, password: string, firstName: string, lastName: string, email: string) => {
   return axios.post(API_URL + "register", {
     username,
-    email,
     password,
+    firstName,
+    lastName,
+    email,
+  },headers,)
+  .then((response) => {
+    return response;
   });
 };
 
@@ -26,7 +31,7 @@ export const login = (username: string, password: string) => {
     .then((response) => {
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      return response.data;
+      return response;
     });
 };
 

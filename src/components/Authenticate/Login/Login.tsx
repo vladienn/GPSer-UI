@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import { login } from "../../../services/auth.service";
 
 import { useNavigate } from 'react-router-dom';
-import TextField from "@mui/material/TextField/TextField";
 import Button from '@mui/material/Button';
 import Paper from "@mui/material/Paper/Paper";
 import { Alert, Avatar, Box, Checkbox, Container, createStyles, createTheme, CssBaseline, FormControlLabel, Grid, Link, ThemeProvider, Typography } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AlertMassage from "../../Alerts/AlertMessage";
 import './Login.css';
-import { handleChange } from "../../../utils/loginUtil";
 import UsernameField from "./UsernameField/UsernameField";
 import PasswordField from "./PasswordField/PasswordField";
 
@@ -28,7 +26,7 @@ function Login() {
   const handleLogin = (e:any) => {
     setLoading(true);
     setErrorMsg("");
-    console.log(username);
+
     e.preventDefault();
 
     login(username, password).then(

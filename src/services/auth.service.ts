@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Console } from "console";
+import jwt_decode from "jwt-decode";
 
 const API_URL = "https://localhost:7014/api/Authenticate/";
 
@@ -42,6 +43,14 @@ export const logout = () => {
 export const getCurrentUser = () => {
   let test: any = localStorage.getItem("user")
   const userStr: any = JSON.parse(test);
+  if(userStr === null) return null;
+   
+  const token: any = jwt_decode(userStr);
 
-  return userStr;
+  const profileInfo = {
+      userName: token["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
+      role: token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+  }
+
+  return profileInfo;
 };

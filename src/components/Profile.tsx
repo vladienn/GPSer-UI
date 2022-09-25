@@ -5,19 +5,14 @@ import jwt_decode from "jwt-decode";
 
 function Profile() {
   const currentUser = getCurrentUser();
-  const token: any = jwt_decode(currentUser);
-  console.log(token);
-
-  const profileInfo = {
-      userName: token["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"],
-      role: token["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-  }
 
   return (
     <div className="container">
       <header className="jumbotron">
         <h3>
-          <strong>{profileInfo.userName}</strong> Profile
+          <strong>{currentUser?.userName}</strong>
+          <strong>{currentUser?.role}</strong> 
+
         </h3>
       </header>
     </div>
